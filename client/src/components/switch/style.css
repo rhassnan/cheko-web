@@ -1,0 +1,39 @@
+.switch-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.toggle {
+    display: inline-flex;
+    justify-content: center;
+    width: 1.5rem;     
+    height: 2.75rem;      
+    background-color: #111216; 
+    border-radius: 9999px; /* full */
+    transition: background-color 0.3s ease;
+    position: relative;
+    padding: 2px;
+  }
+  
+  .toggle-checked {
+    background-color: #3F4142; 
+  }
+  
+  .toggle-thumb {
+    height: .8rem;     
+    width: .8rem;
+    background-color: #F4CBDF;
+    border-radius: 9999px;
+    transform: translateY(4px);
+    transition: transform 0.3s ease;
+    position: absolute;
+  }
+  
+  .thumb-checked {
+    transform: translateY(20px); 
+  }
+  

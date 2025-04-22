@@ -1,0 +1,85 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-container {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .modal-desc {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .modal-cal, .modal-price {
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+  
+  .modal-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1rem;
+  }
+  
+  .modal-counter button {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    background: #f0f0f0;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  .add-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-weight: bold;
+    border: none;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,23 @@
+.tabs-container {
+    display: flex;
+    /* flex-direction: row; */
+    /* width: 100%; */
+}
+
+.categoreis-tabs-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /* gap: 2rem; */
+    justify-content: space-between;
+    margin-right: .6rem;
+   
+}
+
+.vertical-devider {
+    border: 1px solid #0000001A
+}
+
+.orders-container {
+    margin-left: 1rem;
+}

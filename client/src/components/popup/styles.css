@@ -13,73 +13,121 @@
   
   .modal-container {
     background: white;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
+    border-radius: 2rem;
+    width: 35rem;
+    /* height: 37.5rem; */
+    padding: 1.2rem;
     position: relative;
     animation: fadeIn 0.3s ease;
-  }
-  
-  .modal-image {
-    width: 100%;
-    border-radius: 16px;
-    object-fit: cover;
-    height: 200px;
-  }
-  
-  .modal-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-  
-  .modal-desc {
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    color: #444;
-  }
-  
-  .modal-cal, .modal-price {
-    margin-top: 0.25rem;
-    font-weight: 500;
-  }
-  
-  .modal-counter {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 1rem;
-  }
-  
-  .modal-counter button {
-    width: 32px;
-    height: 32px;
-    font-size: 1.2rem;
-    background: #f0f0f0;
-    border-radius: 10px;
-    border: none;
-  }
-  
-  .add-btn {
-    margin-top: 1.5rem;
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 0.75rem;
-    border-radius: 12px;
-    font-weight: bold;
-    border: none;
+    flex-direction: column;
+    justify-content: space-between;
+    
   }
   
   .close-btn {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: transparent;
     font-size: 1.5rem;
-    border: none;
     cursor: pointer;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c2c0c0;
+    color: white;
   }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1.3rem;
+  }
+
+  .modal-upper {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+
+
+  .modal-cal{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e1e1e93;
+  }
+  
+  .modal-desc {
+    font-size: 0.95rem;
+    color: #0000004e;
+  }
+
+  .modal-image {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    height: 19rem;
+  }
+  
+
+.modal-lower{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 2.6rem;
+  }
+
+  .modal-price {
+    font-size: 22px;
+    font-weight: 500;
+    color: #F4CBDF;
+  }
+
+
+  .modal-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem
+  }
+  
+  .modal-counter button {
+    width: 2rem;
+    height: 2rem;
+    background: #F4CBDF;
+    color: black;
+    border-radius: 10px;
+
+  }
+
+
+
+  .modal-counter button:hover {
+    background-color: #e8afcb;
+    box-shadow: 0px 0px 10px 1px #de9fbe75;
+}
+  
+
+.modal-counter button:disabled {
+  background: #f4cbdf7a;
+  box-shadow: none !important;
+}
+
+  
+
+
+ 
+  
+  
   

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-interface CardInterface {
+interface CardProps {
   id: number;
   name: string;
   description: string;
@@ -11,55 +11,21 @@ interface CardInterface {
   category: string;
   lat: number;
   lng: number;
-  // count: number
-  setOrders: React.Dispatch<React.SetStateAction<OrderItem[]>>;
-  orderList: OrderItem[];
-  onClick?: () => void;
+  orderList: any[];
+  onClick: () => void;
+  updateOrders: (item: any, count: number) => void;
+  getItemCount: (id: number) => number;
 }
 
-type OrderItem = Omit<CardInterface, "setOrders" | "orderList"> & {
-  quantity: number;
-};
 
-export default function Card(item: CardInterface) {
-  const [counter, setCounter] = useState(() => {
-    const existing = item.orderList.find((o) => o.id === item.id);
-    return existing?.quantity || 0;
-  });
 
-  const updateOrders = (newCount: number) => {
-    const existing = item.orderList.find((o) => o.id === item.id);
+export default function Card(item: CardProps) {
+ 
+  const counter = item.getItemCount(item.id);
 
-    if (newCount > 0) {
-      const newItem: OrderItem = {
-        ...item,
-        quantity: newCount,
-      };
-
-      item.setOrders((prev) => {
-        if (existing) {
-          return prev.map((order) => (order.id === item.id ? newItem : order));
-        } else {
-          return [...prev, newItem];
-        }
-      });
-    } else {
-      if (existing) {
-        item.setOrders((prev) => prev.filter((order) => order.id !== item.id));
-      }
-    }
-  };
-
-  const handleCounter = (operation: string) => {
-    if (operation === "-" && counter > 0) {
-      const newCount = counter - 1;
-      setCounter(newCount);
-      updateOrders(newCount);
-    } else if (operation === "+") {
-      const newCount = counter + 1;
-      setCounter(newCount);
-      updateOrders(newCount);
-    }
+  const handleCounter = (op: string) => {
+    const newCount = op === '+' ? counter + 1 : counter - 1;
+    item.updateOrders(item, Math.max(0, newCount));
   };
 
   return (
@@ -73,7 +39,7 @@ export default function Card(item: CardInterface) {
         <div className="lower-info">
           <p className="item-price">{item.price} SR</p>
           <div className="counter-container" onClick={(e) => e.stopPropagation()}>
-            <button className="counter" onClick={() => handleCounter("-")}>
+            <button className="counter" disabled={counter <= 0} onClick={() => handleCounter("-")}>
               -
             </button>
             <p className="counter-txt">{counter}</p>

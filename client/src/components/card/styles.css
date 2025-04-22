@@ -75,3 +75,8 @@
     background-color: #e8afcb;
     box-shadow: 0px 0px 10px 1px #de9fbe75;
 }
+
+.counter:disabled {
+    background: #f4cbdf7a;
+    box-shadow: none;
+  }

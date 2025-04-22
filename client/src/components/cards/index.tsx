@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../card'
 import './styles.css'
 
-export default function Cards({ setOrders, orderList , items, onCardClick}: any ) {
+export default function Cards({ items, orderList, onCardClick, updateOrders, getItemCount}: any ) {
 
 
 
@@ -11,9 +11,10 @@ export default function Cards({ setOrders, orderList , items, onCardClick}: any 
        {items.map((item:any) => {
             return (
                 <Card key={item.id} {...item}
-                setOrders={setOrders}
-                orderList={orderList} 
-                onClick={() => onCardClick(item)}/>
+                orderList={orderList}
+                onClick={() => onCardClick(item)}
+                updateOrders={updateOrders}
+                getItemCount={getItemCount}/>
             )
         })}
     </div>

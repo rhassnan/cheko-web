@@ -3,8 +3,13 @@ import "./style.css";
 import ModeSwitch from "../switch";
 import SearchFilter from "../searchFilter";
 
-export default function Header() {
-  const [activeTab, setActiveTab] = useState("home");
+interface HeaderProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+export default function Header({ activeTab, setActiveTab }: HeaderProps) {
+  
 
   const tabs = [
     { id: "home", label: "Home" },

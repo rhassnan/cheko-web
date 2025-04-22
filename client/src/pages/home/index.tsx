@@ -4,22 +4,20 @@ import Tabs from "../../components/tabs";
 import "./styles.css";
 import Cards from "../../components/cards";
 import Popup from "../../components/popup";
+import { OrderItem } from '../../../src/types/OrderItem'; 
 
-type OrderItem = {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    calorie: number;
-    category: string;
-    lat: number;
-    lng: number;
-    quantity: number;
-  };
+
+
+
+  interface HomeProps {
+    items: OrderItem[];
+    externalItem: OrderItem | null;
+    externalModalOpen: boolean;
+    onCloseModal: () => void;
+  }
   
 
-export default function Home() {
+export default function Home({ items, externalItem, externalModalOpen, onCloseModal }: HomeProps) {
 
   const [category, setCategory] = useState("Breakfast");
   const [orderList, setOrders] = useState<OrderItem[]>([])
@@ -55,54 +53,6 @@ export default function Home() {
   };
 
 
-
-  const items=  [
-    {
-      "id": 36,
-      "name": "nougat",
-      "description": "Quaerat quibusdam minima magni consectetur provident libero. Dolor accusamus assumenda officiis delectus. Eligendi eveniet quibusdam at. Placeat voluptatibus nesciunt perferendis ullam magni repellat minus dolor. Repudiandae repellendus incidunt molestias iure.",
-      "price": 393,
-      "image": "https://loremflickr.com/640/480/food",
-      "calorie": 47,
-      "category": "Sushi",
-      "lat": -47.1976,
-      "lng": -178.4445
-    },
-    {
-      "id": 18,
-      "name": "codepage",
-      "description": "Vel iusto necessitatibus ipsum. Dicta iste expedita distinctio exercitationem amet. Occaecati sapiente deleniti exercitationem. Impedit labore amet ratione. Doloribus magni veritatis ipsam optio.",
-      "price": 593,
-      "image": "https://loremflickr.com/640/480/food",
-      "calorie": 6,
-      "category": "Drinks",
-      "lat": -69.6643,
-      "lng": 21.2437
-    },
-    {
-      "id": 11,
-      "name": "flax",
-      "description": "Nam excepturi quia. Veritatis non nam quisquam perferendis. Rem ex hic laborum officiis fuga. Maiores reiciendis quia consectetur est sed. Esse aliquid ipsam odit dolores odio.",
-      "price": 152,
-      "image": "https://loremflickr.com/640/480/food",
-      "calorie": 25,
-      "category": "Breakfast",
-      "lat": 0.5756,
-      "lng": 67.289
-    },
-    {
-      "id": 111,
-      "name": "flax",
-      "description": "Nam excepturi quia. Veritatis non nam quisquam perferendis. Rem ex hic laborum officiis fuga. Maiores reiciendis quia consectetur est sed. Esse aliquid ipsam odit dolores odio.",
-      "price": 152,
-      "image": "https://loremflickr.com/640/480/food",
-      "calorie": 25,
-      "category": "Breakfast",
-      "lat": 0.5756,
-      "lng": 67.289
-    }
-  ]
-
   const filteredItems =
     category === "Orders"
       ? orderList
@@ -117,23 +67,21 @@ export default function Home() {
         <h1 className="category-txt">{category}</h1>
         <div className="horizontal-divider"></div>
       </div>
-        <Cards setOrders={setOrders} orderList={orderList}
+      <Cards
         items={filteredItems}
+        orderList={orderList}
         onCardClick={openModal}
         updateOrders={updateOrders}
-        getItemCount={getItemCount}/>
-        <Popup
-            isOpen={modalOpen}
-            onClose={() => setModalOpen(false)}
-            item={selectedItem}
-            counter={getItemCount(selectedItem?.id || 0)}
-            onIncrease={() =>
-              selectedItem && updateOrders(selectedItem, getItemCount(selectedItem.id) + 1)
-            }
-            onDecrease={() =>
-              selectedItem && updateOrders(selectedItem, getItemCount(selectedItem.id) - 1)
-            }
-            />
+        getItemCount={getItemCount}
+      />
+      <Popup
+        isOpen={externalModalOpen}
+        onClose={onCloseModal}
+        item={externalItem}
+        counter={externalItem ? getItemCount(externalItem.id) : 0}
+        onIncrease={() => externalItem && updateOrders(externalItem, getItemCount(externalItem.id) + 1)}
+        onDecrease={() => externalItem && updateOrders(externalItem, getItemCount(externalItem.id) - 1)}
+      />
 
     </div>
   );

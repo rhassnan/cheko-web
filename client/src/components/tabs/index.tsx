@@ -7,49 +7,83 @@ import SoupsIcon from '../../assets/icons/soups.svg?react'
 import SushiIcon from '../../assets/icons/sushi.svg?react'
 import OrdersIcon from '../../assets/icons/orders.svg?react'
 
+import { OrderItem } from '../../../src/types/OrderItem'; 
 
+interface TabsProps {
+    setCategory: (cat: string | null) => void;
+    categoryCounts: Record<string, number>;
+    orderCount: number;
+    selectedCategory?: string | null;
+    activeCategory: string | null;
+    allItems: OrderItem[];
+  }
+  
 
-export default function Tabs({setCategory} :any) {
-    const cat = [
+export default function Tabs({ setCategory, categoryCounts, orderCount, selectedCategory, activeCategory, allItems }: TabsProps) {
+    const categories = [
         {
             cat: "Breakfast", 
             icon: BreakfastIcon, 
             color: '#F4CBDF',
-            count: 23
         },
         {
             cat: "Drinks", 
             icon: DrinksIcon, 
             color: '#CDDFEC',
-            count: 23
         },
         {
             cat: "Soups", 
             icon: SoupsIcon, 
             color: '#E7DEE3',
-            count: 23
         },
         {
             cat: "Sushi", 
             icon: SushiIcon, 
             color: '#D1D1EF',
-            count: 23
         },
     ]
+
+    const handleTabClick = (cat: string) => {
+        if (activeCategory === cat) {
+          setCategory(null); // toggle off to show all
+        } else {
+          setCategory(cat);
+        }
+      };
+
+      
   return (
-    <div className='tabs-container'>
-    <div className='categoreis-tabs-container'>
-        {cat.map((item, index) => {
-            const Icon = item.icon;
-            return (
-                <Tab key={index} title={item.cat} color={item.color} count={item.count} icon={Icon} setCategory={setCategory}/>
-            )
-        })}
-    </div>
-    <span className='vertical-devider'></span>
-    <div className='orders-container'>
-    <Tab  title={"Orders"} color={'#D0EAE3'} count={3} icon={OrdersIcon} setCategory={setCategory}/>
-    </div>
-    </div>
+    <div className="tabs-container">
+  <div className="categoreis-tabs-container">
+    {categories.map((cat, index) => {
+      const Icon = cat.icon;
+      return (
+        <Tab
+          key={index}
+          title={cat.cat}
+          color={cat.color}
+          count={categoryCounts[cat.cat] || 0}
+          icon={Icon}
+          setCategory={setCategory}
+          isActive={activeCategory === cat.cat}
+          onClick={() => handleTabClick(cat.cat)}
+        />
+      );
+    })}
+  </div>
+  <span className="vertical-devider"></span>
+  <div className="orders-container">
+    <Tab
+      title="Orders"
+      color="#D0EAE3"
+      count={orderCount}
+      icon={OrdersIcon}
+      setCategory={setCategory}
+      isActive={activeCategory === "Orders"}
+      onClick={() => handleTabClick('Orders')}
+    />
+  </div>
+</div>
+
   )
 }

@@ -2,6 +2,7 @@ package cheko.example.checko.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import cheko.example.checko.service.MenuService;
  
 @RestController
 @RequestMapping("/menu")
+@CrossOrigin(origins = "*") 
 public class MenuController {
 
     private final MenuService menuService;

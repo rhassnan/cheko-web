@@ -19,9 +19,8 @@ import { OrderItem } from '../../../src/types/OrderItem';
 
 export default function Home({ items, externalItem, externalModalOpen, onCloseModal }: HomeProps) {
 
-  const [category, setCategory] = useState("Breakfast");
+  const [category, setCategory] = useState<string | null>(null);
   const [orderList, setOrders] = useState<OrderItem[]>([])
-
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<OrderItem | null>(null);
 
@@ -53,18 +52,34 @@ export default function Home({ items, externalItem, externalModalOpen, onCloseMo
   };
 
 
-  const filteredItems =
-    category === "Orders"
-      ? orderList
-      : items.filter((item) => item.category === category);
+  
+
+  const filteredItems = category === "Orders"
+    ? orderList
+    : category
+      ? items.filter((item) => item.category === category)
+      : items;
+
 
       
 
+      const currentItem = externalItem || selectedItem;
+      const currentCount = currentItem ? getItemCount(currentItem.id) : 0;
+
+      const categoryCounts = items.reduce((acc, item) => {
+        acc[item.category] = (acc[item.category] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
   return (
     <div className="home">
-      <Tabs setCategory={setCategory} />
+      <Tabs  setCategory={setCategory}
+  categoryCounts={categoryCounts}
+  orderCount={orderList.length} 
+  activeCategory={category}
+  allItems={items}/>
       <div className="category-section">
-        <h1 className="category-txt">{category}</h1>
+        <h1 className="category-txt">{category || 'All'}</h1>
         <div className="horizontal-divider"></div>
       </div>
       <Cards
@@ -74,14 +89,22 @@ export default function Home({ items, externalItem, externalModalOpen, onCloseMo
         updateOrders={updateOrders}
         getItemCount={getItemCount}
       />
-      <Popup
-        isOpen={externalModalOpen}
-        onClose={onCloseModal}
-        item={externalItem}
-        counter={externalItem ? getItemCount(externalItem.id) : 0}
-        onIncrease={() => externalItem && updateOrders(externalItem, getItemCount(externalItem.id) + 1)}
-        onDecrease={() => externalItem && updateOrders(externalItem, getItemCount(externalItem.id) - 1)}
-      />
+     <Popup
+  isOpen={externalModalOpen || modalOpen}
+  onClose={() => {
+    onCloseModal();
+    setModalOpen(false);
+  }}
+  item={currentItem}
+  counter={currentCount}
+  onIncrease={() =>
+    currentItem && updateOrders(currentItem, currentCount + 1)
+  }
+  onDecrease={() =>
+    currentItem && updateOrders(currentItem, currentCount - 1)
+  }
+/>
+
 
     </div>
   );

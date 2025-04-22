@@ -6,9 +6,12 @@ import SearchFilter from "../searchFilter";
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  // onSearch: (keyword: string) => void;
+  searchKeyword: string;
+  setSearchKeyword: (val: string) => void;
 }
 
-export default function Header({ activeTab, setActiveTab }: HeaderProps) {
+export default function Header({ activeTab, setActiveTab, searchKeyword, setSearchKeyword }: HeaderProps) {
   
 
   const tabs = [
@@ -31,7 +34,9 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
           ))}
         </div>
         <div>
-            <SearchFilter/>
+            <SearchFilter 
+            searchKeyword={searchKeyword}
+            setSearchKeyword={setSearchKeyword}/>
         </div>
       </div>
       <div className="mode-switch">

@@ -8,12 +8,16 @@ interface TabsInterface {
     title: string;
     count: number;
     setCategory: any
+    isActive: boolean;
+  onClick: () => void;
   }
 
-export default function Tab({icon: Icon, color, title, count, setCategory} : TabsInterface) {
+export default function Tab({icon: Icon, color, title, count, isActive, onClick} : TabsInterface) {
+
+
 
   return (
-    <button className='tab-card-btn' onClick={() => setCategory(title)}>
+    <button className={`tab-card-btn ${isActive ? 'active-tab' : ''}`} onClick={onClick}>
         <div className='icon-container' style={{ backgroundColor: color }}>
             <Icon/>
         </div>

@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SearchIcon  from '../../assets/icons/search.svg?react'
 import FilterIcon from '../../assets/icons/filter.svg?react'
 import './style.css'
+import Dropdown from '../dropdown';
 
 interface Props {
-    // onSearch: (keyword: string) => void;
     searchKeyword: string;
   setSearchKeyword: (val: string) => void;
+  category: string | null;
+  setCategory: (val: string | null) => void;
   }
 
-export default function SearchFilter({searchKeyword, setSearchKeyword }: Props) {
+export default function SearchFilter({searchKeyword, setSearchKeyword, category, setCategory }: Props) {
 
     const [inputValue, setInputValue] = useState(searchKeyword);
 
-    // useEffect(() => {
-    //     if (searchKeyword === "") setInputValue("");
-    //   }, [searchKeyword]);
+    const handleSelect = (option: string) => {
+      setCategory(option === "All" ? null : option);
+      };
+    
     
       const handleSearch = () => {
         setSearchKeyword(inputValue.trim());
@@ -41,7 +44,12 @@ export default function SearchFilter({searchKeyword, setSearchKeyword }: Props) 
         </div>
         <div className='filter'> 
         <FilterIcon/>
-            <p className='filter-txt'>Filter</p>
+            <Dropdown
+        label={category || "All"}
+        options={["All","Breakfast", "Drinks", "Soups", "Sushi", "Orders"]}
+        selectedCategory={category}
+        onSelect={handleSelect}
+      />
         </div>
         <div className='search-btn-container'>
             <button className='search-btn' type='button' onClick={handleSearch}>Search</button>

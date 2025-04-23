@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Tabs from "../../components/tabs";
 
 import "./styles.css";
@@ -14,12 +14,14 @@ import { OrderItem } from '../../../src/types/OrderItem';
     externalItem: OrderItem | null;
     externalModalOpen: boolean;
     onCloseModal: () => void;
+    category: string | null;
+  setCategory: (cat: string | null) => void;
   }
   
 
-export default function Home({ items, externalItem, externalModalOpen, onCloseModal }: HomeProps) {
+export default function Home({ items, externalItem, externalModalOpen, onCloseModal, category, setCategory }: HomeProps) {
 
-  const [category, setCategory] = useState<string | null>(null);
+  
   const [orderList, setOrders] = useState<OrderItem[]>([])
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<OrderItem | null>(null);

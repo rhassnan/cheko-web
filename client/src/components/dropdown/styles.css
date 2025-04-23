@@ -1,0 +1,68 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    background-color: transparent;
+    
+  }
+  
+  .dropdown-toggle {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #cccccc8f;
+    border-radius: .5rem;
+    margin-top: 2px;
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    scroll-padding-top: 20px
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #FCEFF5;
+  }
+  
+  .arrow {
+    font-size: 12px;
+  }
+  
+
+  /* Width */
+::-webkit-scrollbar {
+  width: 2px;
+  padding: 20px 0;
+}
+
+
+
+/* Thumb (the draggable handle) */
+::-webkit-scrollbar-thumb {
+  background: #F4CBDF;
+  border-radius: 10px;
+}
+
+/* Hover effect on thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

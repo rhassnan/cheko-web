@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './style.css'
@@ -76,6 +76,8 @@ const Map = ({ items, onSelectItem }: MapProps) => {
         .setPopup(popup)
         .addTo(map);
 
+        console.log({marker});
+
       let isPopupOpen = false;
 
       el.addEventListener('click', (e) => {
@@ -106,6 +108,9 @@ const Map = ({ items, onSelectItem }: MapProps) => {
       });
 
     });
+
+   
+    
 
     
 

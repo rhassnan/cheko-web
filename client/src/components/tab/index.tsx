@@ -1,6 +1,5 @@
 import React from 'react'
 import './styles.css'
-import BreakfastIcon from '../../assets/icons/breakfast.svg?react'
 
 interface TabsInterface {
     icon: React.FC<React.SVGProps<SVGSVGElement>>;

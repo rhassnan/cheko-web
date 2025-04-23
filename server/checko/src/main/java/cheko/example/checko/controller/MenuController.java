@@ -34,4 +34,16 @@ public class MenuController {
         return menuService.searchMenus(keyword);
     }
 
+    @GetMapping("/second-highest")
+    public MenuDto getSecondHighestByCategory(@RequestParam String category) {
+        return menuService.getSecondHighestCalorieByCategory(category);
+    }
+
+    @GetMapping("/second-highest-category-wise")
+    public List<MenuDto> getSecondHighestFromEachCategory() {
+        return menuService.getSecondHighestFromEachCategory();
+    }
+
+
+
 }

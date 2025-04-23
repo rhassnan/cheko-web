@@ -1,4 +1,3 @@
-import React from 'react'
 import './styles.css'
 import Tab from '../tab'
 import BreakfastIcon from '../../assets/icons/breakfast.svg?react'
@@ -20,6 +19,10 @@ interface TabsProps {
   
 
 export default function Tabs({ setCategory, categoryCounts, orderCount, selectedCategory, activeCategory, allItems }: TabsProps) {
+  console.log({selectedCategory});
+  console.log({allItems});
+  
+  
     const categories = [
         {
             cat: "Breakfast", 
